@@ -1,0 +1,5 @@
+npm run check:identity
+npx lint-staged
+npm run check:features
+npm run check:agents
+npm run check:attribution
