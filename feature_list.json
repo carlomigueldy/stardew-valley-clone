@@ -344,7 +344,7 @@
     {
       "id": "EPIC-DEPLOYMENT",
       "title": "Preview and release workflow",
-      "status": "in-progress",
+      "status": "done",
       "labels": [
         "epic",
         "delivery"
@@ -387,7 +387,7 @@
           "id": "SHIP-002",
           "title": "Release notes and Vercel configuration",
           "type": "task",
-          "status": "in-progress",
+          "status": "done",
           "labels": [
             "delivery",
             "release"

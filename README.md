@@ -23,6 +23,12 @@ The current build includes:
 | Change seed | Q |
 | Use selected tool / talk | Space or Enter |
 
+## Live deployment
+
+Production is live on Vercel:
+
+https://stardew-valley-clone-five.vercel.app
+
 ## Local development
 
 ```sh
@@ -70,6 +76,7 @@ This recreates deterministic SVG support assets in `public/assets/pixel/`. Runti
 
 ## Release and deployment
 
+- Production URL: https://stardew-valley-clone-five.vercel.app
 - Vercel config is in `vercel.json` for Vite static output.
 - Release Please config is in `release-please-config.json` and `.release-please-manifest.json`.
 - GitHub Actions run quality, feature-list validation, PR hygiene, issue sync, and release automation.
