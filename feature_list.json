@@ -18,7 +18,7 @@
     {
       "id": "EPIC-FOUNDATION",
       "title": "Foundation and delivery harness",
-      "status": "ready",
+      "status": "done",
       "labels": [
         "epic",
         "foundation"
@@ -34,7 +34,7 @@
           "id": "FOUND-001",
           "title": "Bootstrap React, Vite, and Phaser app shell",
           "type": "feature",
-          "status": "planned",
+          "status": "done",
           "labels": [
             "foundation",
             "app-shell"
@@ -62,7 +62,7 @@
           "id": "FOUND-002",
           "title": "Install delivery quality gates",
           "type": "task",
-          "status": "ready",
+          "status": "done",
           "labels": [
             "foundation",
             "quality"
@@ -90,7 +90,7 @@
     {
       "id": "EPIC-GAME-LOOP",
       "title": "Playable day loop",
-      "status": "planned",
+      "status": "done",
       "labels": [
         "epic",
         "gameplay"
@@ -106,7 +106,7 @@
           "id": "LOOP-001",
           "title": "Top-down player movement and camera follow",
           "type": "feature",
-          "status": "planned",
+          "status": "done",
           "labels": [
             "gameplay",
             "movement"
@@ -132,7 +132,7 @@
           "id": "LOOP-002",
           "title": "Game clock and day transition",
           "type": "feature",
-          "status": "planned",
+          "status": "done",
           "labels": [
             "gameplay",
             "time"
@@ -159,7 +159,7 @@
     {
       "id": "EPIC-FARMING",
       "title": "Core farming interactions",
-      "status": "planned",
+      "status": "done",
       "labels": [
         "epic",
         "farming"
@@ -175,7 +175,7 @@
           "id": "FARM-001",
           "title": "Tile interaction model",
           "type": "feature",
-          "status": "planned",
+          "status": "done",
           "labels": [
             "farming",
             "tiles"
@@ -201,7 +201,7 @@
           "id": "FARM-002",
           "title": "Crop lifecycle vertical slice",
           "type": "feature",
-          "status": "planned",
+          "status": "done",
           "labels": [
             "farming",
             "crops"
@@ -230,7 +230,7 @@
     {
       "id": "EPIC-INVENTORY",
       "title": "Inventory, tools, and items",
-      "status": "planned",
+      "status": "done",
       "labels": [
         "epic",
         "inventory"
@@ -246,7 +246,7 @@
           "id": "INV-001",
           "title": "Hotbar and selected tool state",
           "type": "feature",
-          "status": "planned",
+          "status": "done",
           "labels": [
             "inventory",
             "ui"
@@ -272,7 +272,7 @@
           "id": "INV-002",
           "title": "Item stack mutations",
           "type": "feature",
-          "status": "planned",
+          "status": "done",
           "labels": [
             "inventory",
             "items"
@@ -344,7 +344,7 @@
     {
       "id": "EPIC-DEPLOYMENT",
       "title": "Preview and release workflow",
-      "status": "ready",
+      "status": "in-progress",
       "labels": [
         "epic",
         "delivery"
@@ -360,7 +360,7 @@
           "id": "SHIP-001",
           "title": "Pull request quality workflow",
           "type": "task",
-          "status": "ready",
+          "status": "done",
           "labels": [
             "delivery",
             "ci"
@@ -387,7 +387,7 @@
           "id": "SHIP-002",
           "title": "Release notes and Vercel configuration",
           "type": "task",
-          "status": "ready",
+          "status": "in-progress",
           "labels": [
             "delivery",
             "release"
