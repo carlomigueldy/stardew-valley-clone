@@ -23,29 +23,14 @@ const created = [];
 const ensuredLabels = new Set();
 
 for (const epic of data.epics) {
-  const epicBody = [
-    epic.description,
-    '',
-    '## Sub-issues',
-    ...epic.sub_issues.map((item) => `- ${item.id}: ${item.title}`),
-    '',
-    `Source: ${epic.id} in feature_list.json`,
-  ].join('\n');
-  syncIssue(epic, `[${epic.id}] ${epic.title}`, labelsFor(epic, 'epic'), epicBody);
+  syncIssue(epic, `[${epic.id}] ${epic.title}`, labelsFor(epic, 'epic'), epicBody(epic));
 
   for (const item of epic.sub_issues) {
-    const body = [
-      `Parent epic: ${epic.id}`,
-      '',
-      '## Acceptance criteria',
-      ...item.acceptance_criteria.map((criterion) => `- [ ] ${criterion}`),
-      '',
-      `Dependencies: ${(item.depends_on || []).join(', ') || 'none'}`,
-      `Allowed paths: ${(item.paths_allowed || []).join(', ')}`,
-      '',
-      `Source: ${item.id} in feature_list.json`,
-    ].join('\n');
-    syncIssue(item, `[${item.id}] ${item.title}`, labelsFor(item, item.type), body);
+    syncIssue(item, `[${item.id}] ${item.title}`, labelsFor(item, item.type), subIssueBody(epic, item));
+  }
+
+  if (write && epic.github_issue?.number) {
+    editIssueBody(epic.github_issue.number, epicBody(epic));
   }
 }
 
@@ -54,6 +39,35 @@ if (write && created.length > 0) {
   console.log(`Updated ${featurePath} with ${created.length} issue placeholder value(s).`);
 } else if (dryRun) {
   console.log('Dry run complete. Re-run with --write to create missing issues.');
+}
+
+function epicBody(epic) {
+  return [
+    epic.description,
+    '',
+    '## Sub-issues',
+    ...epic.sub_issues.map((item) => {
+      const link = item.github_issue?.number ? `#${item.github_issue.number}` : item.id;
+      return `- [ ] ${link} ${item.id}: ${item.title}`;
+    }),
+    '',
+    `Source: ${epic.id} in feature_list.json`,
+  ].join('\n');
+}
+
+function subIssueBody(epic, item) {
+  const parent = epic.github_issue?.number ? `#${epic.github_issue.number} (${epic.id})` : epic.id;
+  return [
+    `Parent epic: ${parent}`,
+    '',
+    '## Acceptance criteria',
+    ...item.acceptance_criteria.map((criterion) => `- [ ] ${criterion}`),
+    '',
+    `Dependencies: ${(item.depends_on || []).join(', ') || 'none'}`,
+    `Allowed paths: ${(item.paths_allowed || []).join(', ')}`,
+    '',
+    `Source: ${item.id} in feature_list.json`,
+  ].join('\n');
 }
 
 function syncIssue(entry, title, labels, body) {
@@ -99,6 +113,15 @@ function syncIssue(entry, title, labels, body) {
   };
   created.push(entry.id);
   console.log(`Created: ${entry.id} -> ${url}`);
+}
+
+function editIssueBody(number, body) {
+  const result = spawnSync('gh', ['issue', 'edit', String(number), '--repo', repo, '--body', body], { encoding: 'utf8' });
+  if (result.status !== 0) {
+    console.error(result.stderr || result.stdout);
+    process.exit(result.status ?? 1);
+  }
+  console.log(`Updated epic issue #${number} with linked sub-issues.`);
 }
 
 function labelsFor(entry, fallback) {
